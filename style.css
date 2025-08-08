@@ -1,0 +1,160 @@
+/* HtmlFixer Extension Styles */
+
+/* HTML Fixer Button */
+.html-fixer-btn {
+    background: #4a90e2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 4px 8px;
+    transition: background-color 0.2s ease;
+}
+
+.html-fixer-btn:hover {
+    background: #357abd;
+}
+
+.html-fixer-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.html-fixer-btn:active {
+    background: #2968a3;
+}
+
+/* Settings UI */
+.html-fixer-settings {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    background: var(--SmartThemeBodyColor, #222);
+}
+
+.html-fixer-settings h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--SmartThemeEmColor, #fff);
+    font-size: 16px;
+}
+
+.html-fixer-settings .form-group {
+    margin-bottom: 15px;
+}
+
+.html-fixer-settings label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--SmartThemeEmColor, #fff);
+    font-weight: bold;
+}
+
+.html-fixer-settings select,
+.html-fixer-settings input[type="text"],
+.html-fixer-settings input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: var(--SmartThemeBodyColor, #333);
+    color: var(--SmartThemeEmColor, #fff);
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.html-fixer-settings input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.html-fixer-settings select:focus,
+.html-fixer-settings input[type="text"]:focus,
+.html-fixer-settings input[type="password"]:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+.html-fixer-settings small {
+    display: block;
+    margin-top: 5px;
+    color: var(--SmartThemeQuoteColor, #aaa);
+    font-size: 12px;
+}
+
+.html-fixer-settings .btn {
+    background: #4a90e2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 16px;
+    transition: background-color 0.2s ease;
+}
+
+.html-fixer-settings .btn:hover {
+    background: #357abd;
+}
+
+.html-fixer-settings .btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.html-fixer-settings .btn-primary {
+    background: #28a745;
+}
+
+.html-fixer-settings .btn-primary:hover {
+    background: #218838;
+}
+
+/* Dark theme compatibility */
+[data-theme="dark"] .html-fixer-settings {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+[data-theme="dark"] .html-fixer-settings select,
+[data-theme="dark"] .html-fixer-settings input[type="text"],
+[data-theme="dark"] .html-fixer-settings input[type="password"] {
+    background: #333;
+    border-color: #555;
+    color: #fff;
+}
+
+[data-theme="dark"] .html-fixer-settings input[type="checkbox"] {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .html-fixer-settings select {
+    background: #333;
+    border-color: #555;
+    color: #fff;
+}
+
+/* Message controls integration */
+.mes_controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .html-fixer-btn {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+    
+    .html-fixer-settings {
+        padding: 10px;
+    }
+}

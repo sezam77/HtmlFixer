@@ -1,0 +1,11 @@
+{
+    "display_name": "HtmlFixer",
+    "loading_order": 1,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Sezam",
+    "version": "1.0.0",
+    "homePage": "https://github.com/sezam77/HtmlFixer"
+}
