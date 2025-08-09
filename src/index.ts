@@ -1,5 +1,4 @@
-import { ExtensionSettingsManager } from 'sillytavern-utils-lib';
-import { ConnectionProfile } from 'sillytavern-utils-lib/types';
+import { ExtensionSettingsManager, ConnectionProfile } from 'sillytavern-utils-lib';
 
 const extensionName = 'HtmlFixer';
 const globalContext = SillyTavern.getContext();
