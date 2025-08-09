@@ -1,0 +1,7 @@
+.fix-html-button {
+    color: #4CAF50; /* A pleasant green color */
+}
+
+.fix-html-button:hover {
+    color: #81C784; /* A lighter green on hover */
+}
