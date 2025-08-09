@@ -1,0 +1,19 @@
+{
+    "name": "HtmlFixer",
+    "author": "Sezam",
+    "description": "A basic extension to fix HTML.",
+    "settings": [
+        {
+            "id": "selectedProfile",
+            "name": "Selected Profile",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "id": "promptText",
+            "name": "Prompt Text",
+            "type": "string",
+            "default": ""
+        }
+    ]
+}
