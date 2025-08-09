@@ -315,6 +315,10 @@
             <div class="html-fixer-settings">
                 <h3>HTML Fixer Settings</h3>
                 <div class="form-group">
+                    <label for="html-fixer-profile-select">API Connection Profile:</label>
+                    <select id="html-fixer-profile-select" class="form-control"></select>
+                </div>
+                <div class="form-group">
                     <label for="html-fixer-auto">Auto-fix HTML on message send:</label>
                     <input type="checkbox" id="html-fixer-auto" ${extensionSettings.autoFix ? 'checked' : ''}>
                 </div>
@@ -342,10 +346,24 @@
 
     // Setup settings event listeners
     function setupSettingsListeners() {
+        const profileSelect = document.getElementById('html-fixer-profile-select');
         const autoCheckbox = document.getElementById('html-fixer-auto');
         const endpointInput = document.getElementById('html-fixer-endpoint');
         const keyInput = document.getElementById('html-fixer-key');
         const testButton = document.getElementById('html-fixer-test');
+
+        if (profileSelect) {
+            populateProfileDropdown(profileSelect);
+            profileSelect.addEventListener('change', (e) => {
+                extensionSettings.selectedProfile = e.target.value;
+                saveSettings();
+                // Update the other dropdown if it exists
+                const tabSelect = document.getElementById('html-fixer-tab-profile');
+                if (tabSelect) {
+                    tabSelect.value = e.target.value;
+                }
+            });
+        }
 
         if (autoCheckbox) {
             autoCheckbox.addEventListener('change', (e) => {
@@ -423,6 +441,9 @@
         }
         
         console.log('HtmlFixer extension initialized successfully');
+        
+        // Create the extension tab UI
+        createExtensionTabUI();
     }
 
     // Modern SillyTavern event handling
@@ -450,6 +471,79 @@
         } else {
             setTimeout(init, 1000);
         }
+    }
+
+    // Create the UI for the main extension tab
+    function createExtensionTabUI() {
+        const extensionsContainer = document.querySelector('#extensions_content .sub-tab-content');
+        if (!extensionsContainer) {
+            console.warn('HtmlFixer: Could not find extensions container. Retrying...');
+            setTimeout(createExtensionTabUI, 1000);
+            return;
+        }
+
+        // Remove existing entry if it's there
+        const existingEntry = document.getElementById('extension_html_fixer');
+        if (existingEntry) {
+            existingEntry.remove();
+        }
+
+        const extensionEntry = document.createElement('div');
+        extensionEntry.id = 'extension_html_fixer';
+        extensionEntry.className = 'extension_entry';
+
+        const title = document.createElement('h4');
+        title.textContent = 'HtmlFixer';
+        
+        const dropdownContainer = document.createElement('div');
+        dropdownContainer.className = 'html-fixer-dropdown-container';
+        
+        const label = document.createElement('label');
+        label.for = 'html-fixer-tab-profile';
+        label.textContent = 'Active Profile: ';
+
+        const select = document.createElement('select');
+        select.id = 'html-fixer-tab-profile';
+        select.className = 'form-control';
+
+        dropdownContainer.append(label, select);
+        extensionEntry.append(title, dropdownContainer);
+        
+        // Prepend to keep it at the top
+        extensionsContainer.prepend(extensionEntry);
+
+        populateProfileDropdown(select);
+
+        select.addEventListener('change', (e) => {
+            extensionSettings.selectedProfile = e.target.value;
+            saveSettings();
+            // Also update the settings panel dropdown if it exists
+            const settingsSelect = document.getElementById('html-fixer-profile-select');
+            if (settingsSelect) {
+                settingsSelect.value = e.target.value;
+            }
+        });
+    }
+
+    // Populate profile dropdown
+    function populateProfileDropdown(selectElement) {
+        if (!selectElement) return;
+
+        // Clear existing options
+        selectElement.innerHTML = '<option value="">SillyTavern Default</option>';
+
+        // Get available connection profiles from SillyTavern
+        const profiles = (typeof getApiPresets === 'function') ? getApiPresets() : (window.api_server_presets || {});
+        
+        for (const profileName in profiles) {
+            const option = document.createElement('option');
+            option.value = profileName;
+            option.textContent = profileName;
+            selectElement.appendChild(option);
+        }
+        
+        // Set the selected option
+        selectElement.value = extensionSettings.selectedProfile;
     }
 
     // Start the extension

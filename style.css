@@ -158,3 +158,35 @@
         padding: 10px;
     }
 }
+
+/* Styles for the dropdown in the main extension tab */
+.extension_entry#extension_html_fixer {
+    padding: 10px;
+    background: var(--SmartThemeBodyColor, #2c2c2c);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.extension_entry#extension_html_fixer h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.extension_entry .html-fixer-dropdown-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.extension_entry .html-fixer-dropdown-container label {
+    font-weight: bold;
+    color: var(--SmartThemeEmColor, #fff);
+}
+
+.extension_entry .html-fixer-dropdown-container select {
+    flex-grow: 1;
+    max-width: 300px;
+    background: var(--SmartThemeBodyColor, #333);
+    color: var(--SmartThemeEmColor, #fff);
+    border: 1px solid #555;
+}
